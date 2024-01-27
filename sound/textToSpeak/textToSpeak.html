@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Teste de Fala</h1>
+    <button id="btnSpeak">Clique para Falar</button>
+
+    <script>
+        // so funcionou no mozilla
+        const textToSpeak = "Hello there";
+        const utterance = new SpeechSynthesisUtterance(textToSpeak);
+
+        utterance.onstart = function (event) {
+            console.log('Início da fala');
+        };
+
+        utterance.onend = function (event) {
+            console.log('Fim da fala');
+        };
+
+        utterance.onerror = function (event) {
+            console.error('Erro na fala:', event.error);
+        };
+
+        window.speechSynthesis.speak(utterance);
+
+        // funciona em todos
+
+        document.getElementById('btnSpeak').addEventListener('click', function() {
+            const textToSpeak = "Olá mundo";
+            const utterance = new SpeechSynthesisUtterance(textToSpeak);
+            window.speechSynthesis.speak(utterance);
+        });
+
+    </script>
+</body>
+
+</html>
